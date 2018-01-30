@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>如何实现一个类？怎么实例化这个类？</title>
+</head>
+<body>
+
+</body>
+    <script>
+        //1、构造函数法（this + prototype） -- 用 new 关键字 生成实例对象
+        function Person(name, sex){
+            this.name = name;
+            this.sex = sex;
+        }
+        Person.prototype.info = function () {
+            console.log(`姓名：${this.name}，性别：${this.sex}`);
+        };
+        let person = new Person('Madman', '男');
+        person.info();
+
+        //2、Object.create 法 -- 用 Object.create() 生成实例对象
+        var People = {
+            name : 'Madman',
+            sex : '男',
+            info : function () {
+                console.log(`姓名：${this.name}，性别：${this.sex}`);
+            }
+        };
+        var people = Object.create(People);
+        people.info();
+        // Object.create 要求 IE9+，低版本浏览器可以自行部署：
+        if (!Object.create) {
+            Object.create = function (o) {
+                function F() {}
+                F.prototype = o;
+                return new F();
+            };
+        }
+
+        //ES6 语法糖 class -- 用 new 关键字 生成实例对象
+        class Girl{
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            info() {
+                console.log(`姓名：${this.name}，年龄：${this.age}`);
+            }
+        }
+        var girl = new Girl('韩美美', 18);
+        girl.info();
+
+    </script>
+</html>
