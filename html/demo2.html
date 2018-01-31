@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../index.css">
+    <title>实现继承的方式有哪些？</title>
+</head>
+<body>
+
+</body>
+    <script>
+
+        //构造函数实现继承 + call()
+        function Biological() {
+            this.info = function () {
+                console.log(`这是一个生物！`)
+            }
+        }
+        function Person() {
+            Biological.call(this);  //这样Person这是函数就继承了Biological函数的方式
+            /*call() : 调用一个对象的一个方法，以另一个对象替换当前对象；
+            通俗来说，就是改变了当前作用域的引用上下文；
+            再简单点，就是把当前的作用域移交给了Biological函数，所以能通过this直接调用Biological函数独有的方法*/
+            this.hobby = function () {
+                console.log(`我的兴趣是编程！`)
+            }
+        }
+        var person = new Person();
+        person.info();
+        person.hobby();
+
+    </script>
+</html>
