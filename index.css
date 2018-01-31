@@ -1,0 +1,28 @@
+body {
+    font-family: "Helvetica Neue", "Hiragino Sans GB", STHeiti, "Microsoft YaHei", "\9ED1\4F53", Arial, sans-serif, "微软雅黑";
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+body .container{
+    min-height: 100vh;
+}
+body .row-center-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+body .column-center-center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h1,h2,h3{
+    margin: 20px auto 15px auto;
+}
+h4,h5,h6{
+    margin: 10px auto 15px auto;
+ }

@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../index.css">
     <title>如何实现一个类？怎么实例化这个类？</title>
 </head>
 <body>
-
+    <section class="container column-center-center">
+        <h2>如何实现一个类？怎么实例化这个类？</h2>
+        <h5>此问题其实并不难，难的是能清楚的了解多种实现方式</h5>
+        <ol>
+            <li>构造函数法（this + prototype） -- 用 new 关键字 生成实例对象</li>
+            <li>Object.create 法 -- 用 Object.create() 生成实例对象</li>
+            <li>ES6 语法糖 class -- 用 new 关键字 生成实例对象</li>
+        </ol>
+    </section>
 </body>
     <script>
         //1、构造函数法（this + prototype） -- 用 new 关键字 生成实例对象
@@ -50,10 +59,6 @@
         }
         var girl = new Girl('韩美美', 18);
         girl.info();
-
-    </script>
-
-    <script>
 
     </script>
 </html>
