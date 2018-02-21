@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象的深copy</title>
+</head>
+<body>
+
+</body>
+    <script>
+        var str = '2222222'
+        var null1 = null
+        var b
+        var arr = [1,2]
+        var obj = {
+            name : 'Madman',
+            sex : 'boy',
+            hoby : [
+                {
+                    name : '敲代码',
+                    star : 10
+                },{
+                    name : '游戏',
+                    star : 9
+                }
+            ]
+        }
+        var hoby = [
+            {
+                name : '敲代码',
+                star : 10
+            },{
+            name : '游戏',
+            star : 9
+        }]
+        /*function deepClone(obj) {
+            if (obj === null || typeof obj !== 'object') {
+                return obj;
+            }
+            if (obj instanceof Array) {
+                console.log(222)
+                var copy = [];
+                for (var i = 0; i < obj.length; i++) {
+                    copy.push(obj[i]);
+                }
+                return copy;
+            }
+            if (obj instanceof Date) {
+                var copy = new Date();
+                copy.setTime(obj.getTime());
+                return copy;
+            }
+            if (obj instanceof Object) {
+                console.log(44)
+                var copy = {};
+                for (var key in obj) { //递归
+                    if (obj.hasOwnProperty(key)) {
+                        copy[key] = deepClone(obj[key]);
+                    }
+                }
+                return copy;
+            }
+        }*/
+        function deepClone(o,c){
+            c = c||{};
+            if (o === null || typeof o !== 'object') {
+                return o;
+            }
+            for(var i in o){
+                if(o.hasOwnProperty(i)){
+                    if(typeof(o[i])==="object"){
+                        c[i] = Array.isArray(o[i]) ? [] : {};
+                        deepClone(o[i],c[i]);
+                    }else{
+                        c[i] = o[i];
+                    }
+                }
+            }
+            return c;
+        }
+
+        console.log(deepClone(str))
+        console.log(deepClone(null1))
+        var obj2 = deepClone(obj)
+        console.log(obj2)
+        var hoby2 = deepClone(hoby)
+        console.log(hoby2)
+    </script>
+</html>

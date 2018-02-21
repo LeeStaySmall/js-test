@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>判断一个对象是不是数组</title>
+</head>
+<body>
+
+</body>
+<script>
+    var arr  = [1,2,3]
+
+    //1. Array.isArray()
+    console.log(Array.isArray(arr))
+
+    //2. instanceof Array
+    console.log(arr instanceof Array)
+
+    //3.
+    console.log(Object.prototype.toString.call(arr).slice(8,-1))
+
+    //4.
+    console.log(Array.prototype.isPrototypeOf(arr))
+
+    //5.
+    function isArray(obj) {
+        if(typeof obj == "object" && obj.constructor == Array)
+            return true
+        else
+            return false
+    }
+    console.log(isArray(arr))
+
+</script>
+</html>
