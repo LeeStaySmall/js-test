@@ -7,83 +7,130 @@
 <body>
 
 </body>
-    <script>
-        var str = '2222222'
-        var null1 = null
-        var b
-        var arr = [1,2]
-        var obj = {
-            name : 'Madman',
-            sex : 'boy',
-            hoby : [
-                {
-                    name : '敲代码',
-                    star : 10
-                },{
-                    name : '游戏',
-                    star : 9
-                }
-            ]
-        }
-        var hoby = [
+<script>
+    var str = '2222222'
+    var null1 = null
+    var b
+    var arr = [1,2]
+    var obj = {
+        name : 'Madman',
+        sex : 'boy',
+        hoby : [
             {
                 name : '敲代码',
                 star : 10
             },{
+                name : '游戏',
+                star : 9
+            }
+        ]
+    }
+    var hoby = [
+        {
+            name : '敲代码',
+            star : 10
+        },{
             name : '游戏',
             star : 9
         }]
-        /*function deepClone(obj) {
-            if (obj === null || typeof obj !== 'object') {
-                return obj;
-            }
-            if (obj instanceof Array) {
-                console.log(222)
-                var copy = [];
-                for (var i = 0; i < obj.length; i++) {
-                    copy.push(obj[i]);
-                }
-                return copy;
-            }
-            if (obj instanceof Date) {
-                var copy = new Date();
-                copy.setTime(obj.getTime());
-                return copy;
-            }
-            if (obj instanceof Object) {
-                console.log(44)
-                var copy = {};
-                for (var key in obj) { //递归
-                    if (obj.hasOwnProperty(key)) {
-                        copy[key] = deepClone(obj[key]);
-                    }
-                }
-                return copy;
-            }
-        }*/
-        function deepClone(o,c){
-            c = c||{};
-            if (o === null || typeof o !== 'object') {
-                return o;
-            }
-            for(var i in o){
-                if(o.hasOwnProperty(i)){
-                    if(typeof(o[i])==="object"){
-                        c[i] = Array.isArray(o[i]) ? [] : {};
-                        deepClone(o[i],c[i]);
-                    }else{
-                        c[i] = o[i];
-                    }
-                }
-            }
-            return c;
+    /*function deepClone(obj) {
+        if (obj === null || typeof obj !== 'object') {
+            return obj;
         }
+        if (obj instanceof Array) {
+            console.log(222)
+            var copy = [];
+            for (var i = 0; i < obj.length; i++) {
+                copy.push(obj[i]);
+            }
+            return copy;
+        }
+        if (obj instanceof Date) {
+            var copy = new Date();
+            copy.setTime(obj.getTime());
+            return copy;
+        }
+        if (obj instanceof Object) {
+            console.log(44)
+            var copy = {};
+            for (var key in obj) { //递归
+                if (obj.hasOwnProperty(key)) {
+                    copy[key] = deepClone(obj[key]);
+                }
+            }
+            return copy;
+        }
+    }*/
+    function deepClone(o,c){
+        c = c||{};
+        if (o === null || typeof o !== 'object') {
+            return o;
+        }
+        for(var i in o){
+            if(o.hasOwnProperty(i)){
+                if(typeof(o[i])==="object"){
+                    c[i] = Array.isArray(o[i]) ? [] : {};
+                    deepClone(o[i],c[i]);
+                }else{
+                    c[i] = o[i];
+                }
+            }
+        }
+        return c;
+    }
 
-        console.log(deepClone(str))
-        console.log(deepClone(null1))
-        var obj2 = deepClone(obj)
-        console.log(obj2)
-        var hoby2 = deepClone(hoby)
-        console.log(hoby2)
-    </script>
+    console.log(deepClone(str))
+    console.log(deepClone(null1))
+    var obj2 = deepClone(obj)
+    console.log(obj2)
+    var hoby2 = deepClone(hoby)
+    console.log(hoby2)
+
+    /*Object.prototype.deepCopy = function (obj) {
+        var o;
+        if(obj === null || !(obj instanceof Object)){
+            return obj;
+        }else if(obj instanceof Array){
+           o = [];
+           var i = o.length;
+           while(i--){
+               o[i] = Object.deepCopy(obj[i])
+           }
+           return o;
+        }else if(obj instanceof Object){
+            o = {};
+            for (var i in obj) {
+                o[i] = Object.deepCopy(obj[i]);
+            }
+            return o;
+        }
+    }
+    console.log("--------------------")
+    console.log(Object.deepCopy(arr))*/
+
+    Object.prototype.deepCopy = function (Obj) {
+        var buf;
+        if (Obj instanceof Array) {
+            buf = [];
+            var i = Obj.length;
+            while (i--) {
+                buf[i] = Object.deepCopy(Obj[i]);
+            }
+            return buf;
+        } else if (Obj instanceof Object){
+            buf = {};
+            for (var k in Obj) {
+                if(Obj.hasOwnProperty(k)){
+                    buf[k] = Object.deepCopy(Obj[k]);
+                }
+            }
+            return buf;
+        }else{
+            return Obj;
+        }
+    }
+    console.log('-----------')
+    var obj4 = Object.deepCopy(obj)
+    console.log(obj4)
+</script>
 </html>
